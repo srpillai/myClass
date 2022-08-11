@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rocket Simulation</title>
+    <style>
+      label { display: block; margin-bottom: 7px;}
+    </style>
+  </head>
+  <!-- For students who find this online, the 'required' keyword can be
+    added to the input tags to streamline checking for missing data. -->
+  <body>
+    <form action="https://handlers.education.launchcode.org/request-parrot" method="POST">
+    <label>Test Name:
+      <input type="text" name="testName" required/>
+    </label>
+    <label>Test Date:
+      <input type="date" name="testDate" required/>
+    </label>
+    <label>Rocket Type:
+      <select name="rocketType" required>
+       <option value="">* Select One *</option>
+       <option value="Brant">Brant</option>
+       <option value="Lynx">Lynx</option>
+       <option value="Orion">Orion</option>
+       <option value="Terrier">Terrier</option>
+     </select>
+    </label>
+    <label>Number of Rocket Boosters:
+      <input type="number" name="boosterCount" min="1" max="9" required/>
+    </label>
+    <label>Wind Rating:
+      <label><input type="radio" name="windRating" value="0" required/>No Wind</label>
+      <label><input type="radio" name="windRating" value="10"/>Mild</label>
+      <label><input type="radio" name="windRating" value="20"/>Strong</label>
+    </label>
+    <label>Use production grade servers:
+      <input type="checkbox" name="productionServers"/>
+    </label>
+    <button>Run Simulation</button>
+    </form>
+  </body>
+</html>

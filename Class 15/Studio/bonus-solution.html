@@ -1,0 +1,71 @@
+<!doctype html>
+<head>
+    <script>
+        function setSearchEngine() {
+
+            let actions = {
+				"google": "https://google.com/search",
+				"duckduckgo": "https://duckduckgo.com",
+				"bing": "https://www.bing.com/search/",
+				"ask": "https://www.ask.com/web"
+			};
+
+            let form = document.getElementById('searchForm');
+            let searchTerm = document.querySelector("input[name=q]").value;
+
+            if (searchTerm.trim() === "") {
+                event.preventDefault();
+                alert("Please enter a search term");
+                return;
+            }
+
+            let selectedEngine = document.querySelector('input[name=engine]:checked');
+            
+            if (selectedEngine === null) {
+                event.preventDefault();
+                alert('Invalid search engine selection');
+                return;
+            }
+
+            let action = actions[selectedEngine.value];
+
+            if (action === undefined) {
+                event.preventDefault();
+                alert('Invalid search engine selection');
+                return;
+            }
+
+            form.setAttribute('action', action);
+        }
+
+        window.addEventListener('load', function(){
+            let form = document.getElementById('searchForm');
+            form.addEventListener('submit', setSearchEngine);
+        });
+
+    </script>
+</head>
+<body>
+
+    <form id="searchForm">
+        <input type="text" name="q" />
+        <label>
+            <input type="radio" name="engine" value="google" />
+            Google 
+        </label>
+        <label>
+            <input type="radio" name="engine" value="duckduckgo" />
+            DuckDuckGo 
+        </label>
+        <label>
+            <input type="radio" name="engine" value="bing" />
+            Bing 
+        </label>
+        <label>
+            <input type="radio" name="engine" value="ask" />
+            Ask 
+        </label>
+        <input type="submit" value="Go!" />
+    </form>
+
+</body>

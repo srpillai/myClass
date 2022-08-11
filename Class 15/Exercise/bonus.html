@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rocket Simulation</title>
+    <style>
+      label { display: block; margin-bottom: 7px;}
+    </style>
+  </head>
+  <!-- The script holds the event handler to validate that each input
+    except productionServers are filled.-->
+  <script>
+    let userInputs = [];
+    window.addEventListener("load", function() {
+        let form = document.querySelector("form");
+        form.addEventListener("submit", function(event) {
+          userInputs.push(document.querySelector("input[name=testName]"));
+          userInputs.push(document.querySelector("input[name=testDate]"));
+          userInputs.push(document.querySelector("select[name=rocketType]"));
+          userInputs.push(document.querySelector("input[name=boosterCount]"));
+          let radios = document.getElementsByName("windRating");
+          let missingRadio = true;
+          for(let i=0; i<radios.length; i++){
+            if (radios[i].checked){
+              userInputs.push(radios[i]);
+              missingRadio = false;
+            }
+          }
+
+          for (let i=0; i<userInputs.length; i++){
+            if (!userInputs[i].value || missingRadio){
+              alert("All fields are required!");
+              event.preventDefault();
+              break;
+            }
+          }
+        });
+    });
+</script>
+  <body>
+    <form action="https://handlers.education.launchcode.org/request-parrot" method="POST">
+    <label>Test Name:
+      <input type="text" name="testName"/>
+    </label>
+    <label>Test Date:
+      <input type="date" name="testDate"/>
+    </label>
+    <label>Rocket Type:
+      <select name="rocketType">
+       <option value="">* Select One *</option>
+       <option value="Brant">Brant</option>
+       <option value="Lynx">Lynx</option>
+       <option value="Orion">Orion</option>
+       <option value="Terrier">Terrier</option>
+     </select>
+    </label>
+    <label>Number of Rocket Boosters:
+      <input type="number" name="boosterCount" min="1" max="9"/>
+    </label>
+    <label>Wind Rating:
+      <label><input type="radio" name="windRating" value="0"/>No Wind</label>
+      <label><input type="radio" name="windRating" value="10"/>Mild</label>
+      <label><input type="radio" name="windRating" value="20"/>Strong</label>
+    </label>
+    <label>Use production grade servers:
+      <input type="checkbox" name="productionServers"/>
+    </label>
+    <button>Run Simulation</button>
+    </form>
+  </body>
+</html>
