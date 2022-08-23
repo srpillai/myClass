@@ -1,0 +1,23 @@
+li:hover {
+    cursor: pointer;
+}
+
+.displayBox {
+    height: 250px;
+}
+
+img {
+    width: auto;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+h3 {
+    text-align: center;
+}
+
+.selected {
+    color:lightseagreen;
+}
